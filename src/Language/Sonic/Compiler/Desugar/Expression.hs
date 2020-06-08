@@ -176,21 +176,20 @@ desugarLetDefn (Syn.LetDefn (DiscardLoc (Syn.PatBinder pat)) body) = do
   pat' <- withSourceProv desugarPat pat
   let binds = desugarLetDefnPatBinds pat' rhsTempName
   pure (bind1 : binds)
- where
 
 desugarLetDefnPatBinds :: WithProv IRPat.Pat -> Name Var -> [IR.Bind Desugar]
-desugarLetDefnPatBinds (WithProv patProv pat) rhsName = map makeVarBind
-  $ collectVars pat
+desugarLetDefnPatBinds (WithProv patProv pat) rhsName = binds
  where
+  binds        = map makeVarBind $ collectVars pat
   replacedProv = Derived passDesugar patProv
   makeVarBind v = IR.Bind v Nothing (generated (makeExtractCase v))
   makeExtractCase v = IR.Case
     (generated (IR.Var (generated (localPath rhsName))))
     (generated [generated (makeExtractArm v)])
-  makeExtractArm v@(WithProv _ v') = IR.CaseArm
-    (WithProv replacedProv (replace v' IRPat.Wildcard pat))
+  makeExtractArm (WithProv varProv var) = IR.CaseArm
+    (WithProv replacedProv (replace var IRPat.Wildcard pat))
     Nothing
-    (generated (IR.Var (fmap localPath v)))
+    (generated (IR.Var (WithProv varProv (localPath var))))
 
 desugarCaseArm
   :: (FileContext m, MonadUnique m)
