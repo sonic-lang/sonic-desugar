@@ -187,7 +187,7 @@ desugarLetDefnPatBinds (WithProv patProv pat) rhsName = binds
     (generated (IR.Var (generated (localPath rhsName))))
     (generated [generated (makeExtractArm v)])
   makeExtractArm (WithProv varProv var) = IR.CaseArm
-    (WithProv replacedProv (replace var IRPat.Wildcard pat))
+    (WithProv replacedProv (replace (/= var) IRPat.Wildcard pat))
     Nothing
     (generated (IR.Var (WithProv varProv (localPath var))))
 
