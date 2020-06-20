@@ -9,6 +9,7 @@ module Language.Sonic.Compiler.Desugar.Declaration
   , desugarClassDecl
   , desugarSimpleDecls
   , desugarInstanceDecl
+  , SimpleDeclSource(..)
   )
 where
 
@@ -95,8 +96,7 @@ import qualified Language.Sonic.Compiler.IR.Attribute
                                                 ( Attrs )
 import qualified Language.Sonic.Compiler.IR.Type
                                                as IR
-                                                ( Type
-                                                )
+                                                ( Type )
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
                                                 ( Bind(..)
@@ -168,14 +168,18 @@ desugarDataCtorDecl
   :: FileContext m
   => Syn.WithAttrSet (Syn.SignatureDecl Syn.CtorName) Syn.Position
   -> m [IR.DataCtorDecl Desugar]
-desugarDataCtorDecl (Syn.WithAttrSet attrs (DiscardLoc Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ })) = do
-  attrs' <- desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
-  type' <- withSourceProv desugarType type_
-  mapM (desugarInnerWithName attrs' type') names
+desugarDataCtorDecl (Syn.WithAttrSet attrs (DiscardLoc Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }))
+  = do
+    attrs' <- desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
+    type'  <- withSourceProv desugarType type_
+    mapM (desugarInnerWithName attrs' type') names
  where
   desugarInnerWithName attrs' type' name = do
     name' <- withSourceProv (pure . desugarCtorName) name
-    pure IR.DataCtorDecl { IR.attrs = attrs', IR.name = name', IR.type_ = type' }
+    pure IR.DataCtorDecl { IR.attrs = attrs'
+                         , IR.name  = name'
+                         , IR.type_ = type'
+                         }
 
 desugarClassDecl
   :: (FileContext m, MonadUnique m, MonadReport m)
@@ -202,10 +206,10 @@ desugarClassDecl attrs Syn.ClassDecl { Syn.context, Syn.className, Syn.vars = Sy
     = foldMapM (desugarClassMethodSimpleDeclWithAs . discardLoc) decls
   desugarClassMethodSimpleDeclWithAs (Syn.WithAttrSet declAs decl) = do
     declAs' <- desugarMaybeWithProv (withSourceProv desugarAttrSet) declAs
-    decl' <- desugarClassMethodSimpleDeclWithLoc declAs' decl
+    decl'   <- desugarClassMethodSimpleDeclWithLoc declAs' decl
     pure $ destruct decl'
-  destruct (Signatures sigs) = (sigs, [])
-  destruct (Bindings binds) = ([], binds)
+  destruct (Signatures sigs ) = (sigs, [])
+  destruct (Bindings   binds) = ([], binds)
 
 -- |
 -- 'SimpleDecl' in 'ClassDecl' are desugared into one of the following:
@@ -226,31 +230,33 @@ desugarClassMethodSimpleDeclWithLoc
   => WithProv (IR.Attrs Desugar)
   -> Syn.Located Syn.Position Syn.SimpleDecl
   -> m DesugaredClassMethodSimpleDecl
-desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Value decl)) = do
-  declProv <- parsedAt declSpan
-  binds    <- desugarValueDecl attrs decl
-  let binds' = map (WithProv (Derived passDesugar declProv)) binds
-  pure $ Bindings binds'
-desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Function decl)) = do
-  declProv <- parsedAt declSpan
-  bind     <- desugarFunctionDecl attrs decl
-  pure $ Bindings [WithProv declProv bind]
+desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Value decl)) =
+  do
+    declProv <- parsedAt declSpan
+    binds    <- desugarValueDecl attrs decl
+    let binds' = map (WithProv (Derived passDesugar declProv)) binds
+    pure $ Bindings binds'
+desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Function decl))
+  = do
+    declProv <- parsedAt declSpan
+    bind     <- desugarFunctionDecl attrs decl
+    pure $ Bindings [WithProv declProv bind]
 desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Signature Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }))
-    = desugarWithNames names
-  where
-    desugarWithNames [name] = do
-      prov <- parsedAt declSpan
-      decl <- desugarWithName name
-      pure $ Signatures [WithProv prov decl]
-    desugarWithNames xs = do
-      prov <- Derived passDesugar <$> parsedAt declSpan
-      decls <- mapM desugarWithName xs
-      pure . Signatures $ map (WithProv prov) decls
-    desugarWithName name = do
-      name' <- withSourceProv (pure . desugarVarName) name
-      type' <- withSourceProv desugarType type_
-      let decl = IR.ClassMethodDecl { attrs, name = name', type_ = type' }
-      pure decl
+  = desugarWithNames names
+ where
+  desugarWithNames [name] = do
+    prov <- parsedAt declSpan
+    decl <- desugarWithName name
+    pure $ Signatures [WithProv prov decl]
+  desugarWithNames xs = do
+    prov  <- Derived passDesugar <$> parsedAt declSpan
+    decls <- mapM desugarWithName xs
+    pure . Signatures $ map (WithProv prov) decls
+  desugarWithName name = do
+    name' <- withSourceProv (pure . desugarVarName) name
+    type' <- withSourceProv desugarType type_
+    let decl = IR.ClassMethodDecl { attrs, name = name', type_ = type' }
+    pure decl
 
 desugarInstanceDecl
   :: (FileContext m, MonadUnique m, MonadReport m)
@@ -272,8 +278,10 @@ desugarInstanceDecl attrs Syn.InstanceDecl { Syn.context, Syn.className, Syn.typ
                          }
  where
   desugarInstanceMethods Nothing = pure []
-  desugarInstanceMethods (Just (DiscardLoc (Syn.WhereClause (DiscardLoc (Syn.Sequence decls)))))
-    = desugarSimpleDecls (map discardLoc decls)
+  desugarInstanceMethods (Just (DiscardLoc (Syn.WhereClause (DiscardLoc (Syn.Sequence declsWithAs)))))
+    = do
+      simpleDecls <- mapM (prepareSimpleDeclSource . discardLoc) declsWithAs
+      desugarSimpleDecls simpleDecls
 
 desugarValueDecl
   :: (FileContext m, MonadUnique m, MonadReport m)
@@ -349,43 +357,64 @@ desugarWhereBindings (Just (DiscardLoc (Syn.WhereClause (DiscardLoc (Syn.Sequenc
   = pure body
 desugarWhereBindings (Just (DiscardLoc (Syn.WhereClause (SpanLoc s (Syn.Sequence declsWithAs))))) body
   = do
-    prov  <- Derived passDesugar <$> parsedAt s
-    binds <- desugarSimpleDecls (map discardLoc declsWithAs)
+    prov        <- Derived passDesugar <$> parsedAt s
+    simpleDecls <- mapM (prepareSimpleDeclSource . discardLoc) declsWithAs
+    binds       <- desugarSimpleDecls simpleDecls
     let bindGroup = IR.BindGroup binds
     pure . WithProv prov $ IR.Let [generated bindGroup] body
+ where
 
 data NameState
   = Sig Prov (IR.Attrs Desugar) (Name Var) (WithProv (IR.Type Desugar))
   | Bind (WithProv (IR.Bind Desugar))
 
+-- |
+-- We take 'SimpleDeclSource' type instead of @'Syn.WithAttrSet' 'Syn.SimpleDecl' 'Syn.Position'@ in 'desugarSimpleDecls'.
+--
+-- Sometimes 'Syn.SimpleDecl' data is deeply embeded in the structure (e.g. in 'Syn.Decl').
+-- In that case, we have to build up a data for 'desugarSimpleDecls' manually after destructing the structure.
+--
+-- Since constructing 'Syn.WithAttrSet' (and especially 'Syn.Located') is unreasonably tedious,
+-- we ended up with having new data structure 'SimpleDeclSource' and have callers build this instead.
+data SimpleDeclSource
+  = SimpleDeclSource
+  { attrs    :: WithProv (IR.Attrs Desugar)
+  , declProv :: Prov
+  , decl     :: Syn.SimpleDecl Syn.Position
+  }
+
+prepareSimpleDeclSource
+  :: FileContext m
+  => Syn.WithAttrSet Syn.SimpleDecl Syn.Position
+  -> m SimpleDeclSource
+prepareSimpleDeclSource (Syn.WithAttrSet attrs (SpanLoc declSpan decl)) = do
+  attrs'   <- desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
+  declProv <- parsedAt declSpan
+  pure SimpleDeclSource { attrs = attrs', declProv, decl }
+
+-- | Desugar a set of 'Syn.SimpleDecl's while merging 'Syn.SignatureDecl' into corresponding value declarations.
 desugarSimpleDecls
   :: (FileContext m, MonadUnique m, MonadReport m)
-  => [Syn.WithAttrSet Syn.SimpleDecl Syn.Position]
+  => [SimpleDeclSource]
   -> m [WithProv (IR.Bind Desugar)]
 desugarSimpleDecls decls = do
-  bindsMap <- execStateT (mapM_ desugarSimpleDeclWithAs decls) Map.empty
+  bindsMap <- execStateT (mapM_ desugarSimpleDecl decls) Map.empty
   finalize bindsMap
  where
   finalize = foldMapM $ \case
     Sig prov _ name _ ->
       report Report.Error (Report.StandaloneTypeSignature prov name) $> mempty
     Bind bind -> pure [bind]
-  desugarSimpleDeclWithAs (Syn.WithAttrSet attrs decl) = do
-    attrs' <- lift $ desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
-    desugarSimpleDecl attrs' decl
-  desugarSimpleDecl (WithProv _ attrs) (SpanLoc declSpan (Syn.Signature Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }))
+  desugarSimpleDecl (SimpleDeclSource (WithProv _ attrs) declProv (Syn.Signature Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }))
     = do
-      declProv <- lift $ parsedAt declSpan
       let names' = map (desugarVarName . discardLoc) names
       type' <- lift $ withSourceProv desugarType type_
       mapM_ (addType declProv attrs type') names'
-  desugarSimpleDecl attrs (SpanLoc declSpan (Syn.Value decl)) = do
-    declProv <- lift $ parsedAt declSpan
-    binds    <- lift $ desugarValueDecl attrs decl
+  desugarSimpleDecl (SimpleDeclSource attrs declProv (Syn.Value decl)) = do
+    binds <- lift $ desugarValueDecl attrs decl
     mapM_ (addBind (Derived passDesugar declProv)) binds
-  desugarSimpleDecl attrs (SpanLoc declSpan (Syn.Function decl)) = do
-    declProv <- lift $ parsedAt declSpan
-    bind     <- lift $ desugarFunctionDecl attrs decl
+  desugarSimpleDecl (SimpleDeclSource attrs declProv (Syn.Function decl)) = do
+    bind <- lift $ desugarFunctionDecl attrs decl
     addBind declProv bind
   addType prov attrs sigType name = do
     m <- get
@@ -394,7 +423,7 @@ desugarSimpleDecls decls = do
         lift $ report Report.Error err
         where err = Report.DuplicatedTypeSignature [prov, prov2] name
       Just (Bind bind) -> modify (Map.insert name (Bind bind'))
-        where bind' = fmap (insertBindType attrs sigType) bind
+        where bind' = fmap (insertType attrs sigType) bind
       Just (Sig prov2 _ _ _) -> lift $ report Report.Error err
         where err = Report.DuplicatedTypeSignature [prov, prov2] name
       Nothing -> modify (Map.insert name (Sig prov attrs name sigType))
@@ -412,15 +441,10 @@ desugarSimpleDecls decls = do
       (Just (Sig _ attrs _ sigType), Nothing) -> modify
         (Map.insert name (Bind bind'))
        where
-        bind' = WithProv (Derived passDesugar prov)
-                         (insertBindType attrs sigType bind)
+        bind' =
+          WithProv (Derived passDesugar prov) (insertType attrs sigType bind)
       (Nothing, _) -> modify (Map.insert name (Bind (WithProv prov bind)))
-  insertBindType
-    :: IR.Attrs Desugar
-    -> WithProv (IR.Type Desugar)
-    -> IR.Bind Desugar
-    -> IR.Bind Desugar
-  insertBindType sigAttrs type_ IR.Bind { IR.attrs = WithProv attrsProv attrs, IR.id = bindID, IR.rhs }
+  insertType sigAttrs type_ IR.Bind { IR.attrs = WithProv attrsProv attrs, IR.id = bindID, IR.rhs }
     = IR.Bind
       { IR.attrs = WithProv (Derived passDesugar attrsProv) (attrs <> sigAttrs)
       , IR.id    = bindID
