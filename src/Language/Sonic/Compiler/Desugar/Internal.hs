@@ -11,8 +11,17 @@ module Language.Sonic.Compiler.Desugar.Internal
   , withSourceProvSeq
   , withSourceProv
   , parsedAt
+  -- * Generic supplement functions
+  , foldMapM
   )
 where
+
+import           Data.Foldable                  ( foldlM )
+import           Control.Monad.Trans.State.Strict
+                                                ( StateT
+                                                , get
+                                                , put
+                                                )
 
 import qualified Language.Sonic.Parser         as Syn
                                                 ( Position(..) )
@@ -40,8 +49,7 @@ import           Language.Sonic.Compiler.Provenance
                                                 )
 
 import           Language.Sonic.Compiler.Desugar.IR.Pass
-                                                ( passDesugar
-                                                )
+                                                ( passDesugar )
 
 generatedProv :: Prov
 generatedProv = Source $ Generated passDesugar
@@ -55,8 +63,7 @@ withSourceProvSeq
   -> Syn.Located Syn.Position (Syn.Sequence a)
   -> m (WithProv [WithProv b])
 withSourceProvSeq f = withSourceProv g
-  where
-    g (Syn.Sequence xs) = mapM (withSourceProv f) xs
+  where g (Syn.Sequence xs) = mapM (withSourceProv f) xs
 
 withSourceProv
   :: FileContext m
@@ -93,3 +100,10 @@ unwrapSpan (Syn.L begin a end) = (sp, a)
 toPosition :: Syn.Position -> Position
 toPosition Syn.Position { Syn.line, Syn.column } =
   Position { line = Line line, column = Column column }
+
+foldMapM :: (Monad m, Monoid b, Foldable t) => (a -> m b) -> t a -> m b
+foldMapM f = foldlM g mempty
+ where
+  g acc x = do
+    x' <- f x
+    pure $! acc `mappend` x'
