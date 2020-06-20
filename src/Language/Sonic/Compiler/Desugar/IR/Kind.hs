@@ -2,8 +2,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 
 module Language.Sonic.Compiler.Desugar.IR.Kind
-  ( Kind
-  , pattern Type
+  ( pattern Type
   , pattern Arrow
   )
 where

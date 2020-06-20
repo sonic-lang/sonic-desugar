@@ -50,6 +50,9 @@ import qualified Language.Sonic.Compiler.IR.Type
                                                 , Predicate(..)
                                                 , Context(..)
                                                 )
+import qualified Language.Sonic.Compiler.IR.Type
+                                               as IR
+                                                ( Type )
 import qualified Language.Sonic.Compiler.Desugar.IR.Type
                                                as IR
 
@@ -63,7 +66,7 @@ import           Language.Sonic.Compiler.Desugar.Path
 import           Language.Sonic.Compiler.Desugar.Kind
                                                 ( desugarKind )
 
-desugarType :: FileContext m => Syn.Type Syn.Position -> m IR.Type
+desugarType :: FileContext m => Syn.Type Syn.Position -> m (IR.Type Desugar)
 desugarType (Syn.Parens x) = IR.Parens <$> withSourceProv desugarType x
 desugarType (Syn.Var x) =
   IR.Var <$> withSourceProv (pure . plainPath . desugarTyVarName) x

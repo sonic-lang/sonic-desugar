@@ -2,8 +2,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 
 module Language.Sonic.Compiler.Desugar.IR.Pattern
-  ( Pat
-  , PatInfix(..)
+  ( PatInfix(..)
   , pattern Wildcard
   , pattern Literal
   , pattern Var

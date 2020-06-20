@@ -26,12 +26,17 @@ import           Language.Sonic.Compiler.Desugar.Internal
                                                 , parsedAt
                                                 )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
-                                                ( passDesugar )
+                                                ( Desugar
+                                                , passDesugar
+                                                )
 
 import qualified Language.Sonic.Syntax.Pattern as Syn
                                                 ( Pat(..)
                                                 , PatInfix(..)
                                                 )
+import qualified Language.Sonic.Compiler.IR.Pattern
+                                               as IR
+                                                ( Pat )
 import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
                                                as IR
 
@@ -44,7 +49,7 @@ import           Language.Sonic.Compiler.Desugar.Name
 import           Language.Sonic.Compiler.Desugar.Path
                                                 ( desugarPath )
 
-desugarPat :: FileContext m => Syn.Pat Syn.Position -> m IR.Pat
+desugarPat :: FileContext m => Syn.Pat Syn.Position -> m (IR.Pat Desugar)
 desugarPat (Syn.Parens x) = IR.Parens <$> withSourceProv desugarPat x
 desugarPat Syn.Wildcard   = pure IR.Wildcard
 desugarPat (Syn.Literal l) =

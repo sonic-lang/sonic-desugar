@@ -99,10 +99,15 @@ import qualified Language.Sonic.Compiler.IR.Type
                                                 ( Type )
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
-                                                ( Bind(..)
+                                                ( Expr
+                                                , Bind(..)
                                                 , BindGroup(..)
                                                 , CaseArm(..)
                                                 )
+import qualified Language.Sonic.Compiler.Desugar.IR.Expression
+                                               as IR
+import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
+                                               as IRPat
 import qualified Language.Sonic.Compiler.IR.Declaration
                                                as IR
                                                 ( DataDecl(..)
@@ -111,10 +116,6 @@ import qualified Language.Sonic.Compiler.IR.Declaration
                                                 , ClassMethodDecl(..)
                                                 , InstanceDecl(..)
                                                 )
-import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
-                                               as IRPat
-import qualified Language.Sonic.Compiler.Desugar.IR.Expression
-                                               as IR
 
 import           Language.Sonic.Compiler.Desugar.Name
                                                 ( desugarTyCtorName
@@ -350,8 +351,8 @@ desugarFunctionClause argCount Syn.FunctionClause { Syn.pats = SpanLoc patsSpan 
 desugarWhereBindings
   :: (FileContext m, MonadUnique m, MonadReport m)
   => Maybe (Syn.Located Syn.Position (Syn.WhereClause Syn.SimpleDecl))
-  -> WithProv IR.Expr
-  -> m (WithProv IR.Expr)
+  -> WithProv (IR.Expr Desugar)
+  -> m (WithProv (IR.Expr Desugar))
 desugarWhereBindings Nothing body = pure body
 desugarWhereBindings (Just (DiscardLoc (Syn.WhereClause (DiscardLoc (Syn.Sequence []))))) body
   = pure body

@@ -2,8 +2,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 
 module Language.Sonic.Compiler.Desugar.IR.Expression
-  ( Expr
-  , ExprInfix(..)
+  ( ExprInfix(..)
   , pattern Var
   , pattern Ctor
   , pattern Literal
@@ -31,6 +30,8 @@ import qualified Language.Sonic.Compiler.IR.EntityKind
                                                 )
 import           Language.Sonic.Compiler.IR.Literal
                                                 ( Literal )
+import           Language.Sonic.Compiler.IR.Type
+                                                ( Type )
 import           Language.Sonic.Compiler.IR.Expression
                                                 ( XVar
                                                 , XCtor
@@ -49,8 +50,6 @@ import qualified Language.Sonic.Compiler.IR.Expression
                                                 , BindGroup
                                                 )
 
-import           Language.Sonic.Compiler.Desugar.IR.Type
-                                                ( Type )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
                                                 ( Desugar )
 
@@ -93,7 +92,7 @@ pattern Apply x y = IR.Apply () x y
 pattern Lambda :: XWrap Desugar (XDefID Entity.Var Desugar) -> XWrap Desugar Expr -> Expr
 pattern Lambda v e = IR.Lambda () v e
 
-pattern Annotate :: XWrap Desugar Expr -> XWrap Desugar Type -> Expr
+pattern Annotate :: XWrap Desugar Expr -> XWrap Desugar (Type Desugar) -> Expr
 pattern Annotate x y = IR.Annotate () x y
 
 pattern Let :: [XWrap Desugar BindGroup] -> XWrap Desugar Expr -> Expr

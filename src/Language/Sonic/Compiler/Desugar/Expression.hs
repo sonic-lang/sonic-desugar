@@ -65,17 +65,19 @@ import qualified Language.Sonic.Syntax.Expression
                                                 , CaseArm(..)
                                                 , Guard(..)
                                                 )
+import qualified Language.Sonic.Compiler.IR.Pattern
+                                               as IR
+                                                ( Pat )
 import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
-                                               as IRPat
-                                                ( Pat
-                                                , pattern Wildcard
-                                                )
+                                               as IR
+                                                ( pattern Wildcard )
 import qualified Language.Sonic.Compiler.IR.Attribute
                                                as IR
                                                 ( Attrs )
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
-                                                ( CaseArm(..)
+                                                ( Expr
+                                                , CaseArm(..)
                                                 , Bind(..)
                                                 , BindGroup(..)
                                                 )
@@ -96,7 +98,9 @@ import           Language.Sonic.Compiler.Desugar.Pattern
                                                 ( desugarPat )
 
 desugarExpr
-  :: (FileContext m, MonadUnique m) => Syn.Expr Syn.Position -> m IR.Expr
+  :: (FileContext m, MonadUnique m)
+  => Syn.Expr Syn.Position
+  -> m (IR.Expr Desugar)
 desugarExpr (Syn.Parens x) = IR.Parens <$> withSourceProv desugarExpr x
 desugarExpr (Syn.Var x) =
   IR.Var <$> withSourceProv (pure . desugarPath desugarVarName) x
@@ -184,7 +188,7 @@ desugarLetDefn (Syn.LetDefn (DiscardLoc (Syn.PatBinder pat)) body) = do
 
 makePatBinds
   :: WithProv (IR.Attrs Desugar)
-  -> WithProv IRPat.Pat
+  -> WithProv (IR.Pat Desugar)
   -> Name Var
   -> [IR.Bind Desugar]
 makePatBinds attrs (WithProv patProv pat) rhsName = binds
@@ -196,7 +200,7 @@ makePatBinds attrs (WithProv patProv pat) rhsName = binds
     (generated (IR.Var (generated (localPath rhsName))))
     (generated [generated (makeExtractArm v)])
   makeExtractArm (WithProv varProv var) = IR.CaseArm
-    (WithProv replacedProv (replace (/= var) IRPat.Wildcard pat))
+    (WithProv replacedProv (replace (/= var) IR.Wildcard pat))
     Nothing
     (generated (IR.Var (WithProv varProv (localPath var))))
 
@@ -211,7 +215,9 @@ desugarCaseArm (Syn.CaseArm pat guard body) = do
   pure $ IR.CaseArm pat' guard' body'
 
 desugarGuard
-  :: (FileContext m, MonadUnique m) => Syn.Guard Syn.Position -> m IR.Expr
+  :: (FileContext m, MonadUnique m)
+  => Syn.Guard Syn.Position
+  -> m (IR.Expr Desugar)
 desugarGuard (Syn.Guard g) = do
   WithProv _ e <- withSourceProv desugarExpr g
   pure e

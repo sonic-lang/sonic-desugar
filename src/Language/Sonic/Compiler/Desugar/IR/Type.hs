@@ -2,8 +2,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 
 module Language.Sonic.Compiler.Desugar.IR.Type
-  ( Type
-  , TypeInfix(..)
+  ( TypeInfix(..)
   , pattern Var
   , pattern Ctor
   , pattern Apply
@@ -25,6 +24,8 @@ import qualified Language.Sonic.Compiler.IR.EntityKind
                                                 ( TyVar
                                                 , TyCtor
                                                 )
+import           Language.Sonic.Compiler.IR.Kind
+                                                ( Kind )
 import           Language.Sonic.Compiler.IR.Type
                                                 ( XVar
                                                 , XCtor
@@ -39,8 +40,7 @@ import qualified Language.Sonic.Compiler.IR.Type
                                                 , TyVarBinder
                                                 , Context
                                                 )
-import           Language.Sonic.Compiler.Desugar.IR.Kind
-                                                ( Kind )
+
 import           Language.Sonic.Compiler.Desugar.IR.Pass
                                                 ( Desugar )
 
@@ -71,7 +71,7 @@ pattern Ctor x = IR.Ctor () x
 pattern Apply :: XWrap Desugar Type -> XWrap Desugar Type -> Type
 pattern Apply x y = IR.Apply () x y
 
-pattern Annotate :: XWrap Desugar Type -> XWrap Desugar Kind -> Type
+pattern Annotate :: XWrap Desugar Type -> XWrap Desugar (Kind Desugar) -> Type
 pattern Annotate x y = IR.Annotate () x y
 
 pattern Forall :: [XWrap Desugar (IR.TyVarBinder Desugar)] -> Maybe (XWrap Desugar (IR.Context Desugar)) -> XWrap Desugar Type -> Type
