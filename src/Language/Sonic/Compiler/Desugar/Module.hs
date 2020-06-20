@@ -56,10 +56,16 @@ import qualified Language.Sonic.Compiler.IR.Attribute
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
                                                 ( BindGroup(..) )
+import qualified Language.Sonic.Compiler.IR.Declaration
+                                               as IR
+                                                ( DataDecl
+                                                , ClassDecl
+                                                , InstanceDecl
+                                                )
 import qualified Language.Sonic.Compiler.IR.Module
                                                as IR
-                                                ( Module(..) )
-import qualified Language.Sonic.Compiler.Desugar.IR.Declaration
+                                                ( Module )
+import qualified Language.Sonic.Compiler.Desugar.IR.Module
                                                as IR
 
 import           Language.Sonic.Compiler.Desugar.Attribute
@@ -74,10 +80,11 @@ import           Language.Sonic.Compiler.Desugar.Declaration
 
 data DesugarModuleState
   = DesugarModuleState
-  { _stateAttrs :: [WithProv (IR.Attrs Desugar)]
-  , _stateDecls :: [WithProv IR.Decl]
-  -- | collect 'Syn.SimpleDecl' separately to process them later at once
-  , _stateSimpleDecls :: [SimpleDeclSource]
+  { _stateAttrs         :: [WithProv (IR.Attrs Desugar)]
+  , _stateDataDecls     :: [WithProv (IR.DataDecl Desugar)]
+  , _stateClassDecls    :: [WithProv (IR.ClassDecl Desugar)]
+  , _stateInstanceDecls :: [WithProv (IR.InstanceDecl Desugar)]
+  , _stateSimpleDecls   :: [SimpleDeclSource]
   }
 
 $(makeLenses ''DesugarModuleState)
@@ -89,13 +96,15 @@ desugarModule
 desugarModule (Syn.Module (Syn.Sequence items)) = do
   st    <- execStateT (mapM_ (desugarModuleItem . discardLoc) items) initState
   binds <- desugarSimpleDecls (st ^. stateSimpleDecls)
-  let decl = generated (IR.Bind (generated (IR.BindGroup binds)))
-  pure IR.Module { IR.attrs = st ^. stateAttrs
-                 , IR.decls = decl : st ^. stateDecls
+  pure IR.Module { IR.attrs         = st ^. stateAttrs
+                 , IR.bindings      = [generated (IR.BindGroup binds)]
+                 , IR.dataDecls     = st ^. stateDataDecls
+                 , IR.classDecls    = st ^. stateClassDecls
+                 , IR.instanceDecls = st ^. stateInstanceDecls
                  }
 
 initState :: DesugarModuleState
-initState = DesugarModuleState [] [] []
+initState = DesugarModuleState [] [] [] [] []
 
 desugarModuleItem
   :: (FileContext m, MonadUnique m, MonadReport m)
@@ -119,15 +128,15 @@ desugarTopDecl (Syn.WithAttrSet attrs (SpanLoc declSpan (Syn.Data decl))) = do
   attrs'   <- lift $ desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
   declProv <- lift $ parsedAt declSpan
   decl'    <- lift $ desugarDataDecl attrs' decl
-  stateDecls <>= [WithProv declProv (IR.Data (WithProv declProv decl'))]
+  stateDataDecls <>= [WithProv declProv decl']
 desugarTopDecl (Syn.WithAttrSet attrs (SpanLoc declSpan (Syn.Class decl))) = do
   attrs'   <- lift $ desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
   declProv <- lift $ parsedAt declSpan
   decl'    <- lift $ desugarClassDecl attrs' decl
-  stateDecls <>= [WithProv declProv (IR.Class (WithProv declProv decl'))]
+  stateClassDecls <>= [WithProv declProv decl']
 desugarTopDecl (Syn.WithAttrSet attrs (SpanLoc declSpan (Syn.Instance decl))) =
   do
     attrs' <- lift $ desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
     declProv <- lift $ parsedAt declSpan
     decl' <- lift $ desugarInstanceDecl attrs' decl
-    stateDecls <>= [WithProv declProv (IR.Instance (WithProv declProv decl'))]
+    stateInstanceDecls <>= [WithProv declProv decl']

@@ -32,9 +32,9 @@ library
     Language.Sonic.Compiler.Desugar.Declaration
     Language.Sonic.Compiler.Desugar.Expression
     Language.Sonic.Compiler.Desugar.Internal
-    Language.Sonic.Compiler.Desugar.IR.Declaration
     Language.Sonic.Compiler.Desugar.IR.Expression
     Language.Sonic.Compiler.Desugar.IR.Kind
+    Language.Sonic.Compiler.Desugar.IR.Module
     Language.Sonic.Compiler.Desugar.IR.Pass
     Language.Sonic.Compiler.Desugar.IR.Pattern
     Language.Sonic.Compiler.Desugar.IR.Type
