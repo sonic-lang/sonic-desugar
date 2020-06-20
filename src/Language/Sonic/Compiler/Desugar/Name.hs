@@ -5,6 +5,7 @@ module Language.Sonic.Compiler.Desugar.Name
   , desugarTyVarName
   , desugarClassName
   , desugarModuleComponentName
+  , desugarAttrKeyName
   )
 where
 
@@ -17,6 +18,7 @@ import qualified Language.Sonic.Syntax.Name    as Syn
                                                 , TyVarName(..)
                                                 , ClassName(..)
                                                 , ModuleComponentName(..)
+                                                , AttrKeyName(..)
                                                 )
 import           Language.Sonic.Compiler.IR.EntityKind
                                                 ( Ctor
@@ -27,6 +29,9 @@ import           Language.Sonic.Compiler.IR.EntityKind
                                                 , Module
                                                 )
 
+import qualified Language.Sonic.Compiler.IR.Attribute
+                                               as IR
+                                                ( AttrKey(..) )
 import qualified Language.Sonic.Compiler.Path  as IR
                                                 ( Name(..) )
 
@@ -45,5 +50,9 @@ desugarTyCtorName (Syn.TyCtorName t) = IR.Name t
 desugarClassName :: Syn.ClassName Syn.Position -> IR.Name Class
 desugarClassName (Syn.ClassName t) = IR.Name t
 
-desugarModuleComponentName :: Syn.ModuleComponentName Syn.Position -> IR.Name Module
+desugarModuleComponentName
+  :: Syn.ModuleComponentName Syn.Position -> IR.Name Module
 desugarModuleComponentName (Syn.ModuleComponentName t) = IR.Name t
+
+desugarAttrKeyName :: Syn.AttrKeyName Syn.Position -> IR.AttrKey
+desugarAttrKeyName (Syn.AttrKeyName t) = IR.AttrKey t
