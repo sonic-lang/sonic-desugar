@@ -28,22 +28,28 @@ library
 
   -- cabal-fmt: expand src
   exposed-modules:
+    Language.Sonic.Compiler.Desugar.Attribute
+    Language.Sonic.Compiler.Desugar.Declaration
+    Language.Sonic.Compiler.Desugar.Expression
+    Language.Sonic.Compiler.Desugar.Internal
+    Language.Sonic.Compiler.Desugar.IR.Declaration
     Language.Sonic.Compiler.Desugar.IR.Expression
     Language.Sonic.Compiler.Desugar.IR.Kind
     Language.Sonic.Compiler.Desugar.IR.Pass
     Language.Sonic.Compiler.Desugar.IR.Pattern
     Language.Sonic.Compiler.Desugar.IR.Type
+    Language.Sonic.Compiler.Desugar.Kind
     Language.Sonic.Compiler.Desugar.Literal
-    Language.Sonic.Compiler.Desugar.Internal
     Language.Sonic.Compiler.Desugar.Name
     Language.Sonic.Compiler.Desugar.Path
-    Language.Sonic.Compiler.Desugar.Type
-    Language.Sonic.Compiler.Desugar.Kind
     Language.Sonic.Compiler.Desugar.Pattern
-    Language.Sonic.Compiler.Desugar.Expression
+    Language.Sonic.Compiler.Desugar.Report
+    Language.Sonic.Compiler.Desugar.Type
 
   build-depends:
       base          >=4.11.0 && <5
+    , containers
+    , transformers
     , sonic-ir
     , sonic-pass
     , sonic-syntax
