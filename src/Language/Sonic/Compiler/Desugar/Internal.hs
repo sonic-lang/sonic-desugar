@@ -14,15 +14,15 @@ module Language.Sonic.Compiler.Desugar.Internal
   -- * Generic supplement functions
   , foldMapM
   , desugarMaybeWithProv
+  , (<>=)
   )
 where
 
 import           Data.Foldable                  ( foldlM )
-import           Control.Monad.Trans.State.Strict
-                                                ( StateT
-                                                , get
-                                                , put
-                                                )
+import           Control.Monad.State            ( MonadState )
+
+import           Lens.Micro                     ( ASetter )
+import           Lens.Micro.Mtl                 ( (%=) )
 
 import qualified Language.Sonic.Parser         as Syn
                                                 ( Position(..) )
@@ -116,3 +116,6 @@ desugarMaybeWithProv
   -> m (WithProv ir)
 desugarMaybeWithProv _ Nothing  = pure $ generated mempty
 desugarMaybeWithProv f (Just x) = f x
+
+(<>=) :: (MonadState s m, Semigroup a) => ASetter s s a a -> a -> m ()
+s <>= a = s %= (<> a)

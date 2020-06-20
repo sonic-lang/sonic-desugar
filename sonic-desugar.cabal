@@ -40,6 +40,7 @@ library
     Language.Sonic.Compiler.Desugar.IR.Type
     Language.Sonic.Compiler.Desugar.Kind
     Language.Sonic.Compiler.Desugar.Literal
+    Language.Sonic.Compiler.Desugar.Module
     Language.Sonic.Compiler.Desugar.Name
     Language.Sonic.Compiler.Desugar.Path
     Language.Sonic.Compiler.Desugar.Pattern
@@ -47,12 +48,16 @@ library
     Language.Sonic.Compiler.Desugar.Type
 
   build-depends:
-      base          >=4.11.0 && <5
+      base           >=4.11.0 && <5
     , containers
-    , transformers
+    , microlens
+    , microlens-mtl
+    , microlens-th
+    , mtl
     , sonic-ir
     , sonic-pass
     , sonic-syntax
+    , transformers
 
   default-language:   Haskell2010
   default-extensions: DeriveGeneric
