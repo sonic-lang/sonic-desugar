@@ -96,7 +96,7 @@ pattern Lambda v e = IR.Lambda () v e
 pattern Annotate :: XWrap Desugar Expr -> XWrap Desugar Type -> Expr
 pattern Annotate x y = IR.Annotate () x y
 
-pattern Let :: XWrap Desugar [XWrap Desugar BindGroup] -> XWrap Desugar Expr -> Expr
+pattern Let :: [XWrap Desugar BindGroup] -> XWrap Desugar Expr -> Expr
 pattern Let x y = IR.Let () x y
 
 pattern Case :: XWrap Desugar Expr -> XWrap Desugar [XWrap Desugar CaseArm] -> Expr

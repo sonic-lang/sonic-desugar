@@ -28,8 +28,8 @@ import qualified Language.Sonic.Compiler.Path.Constant
                                                 ( tupleTyCtor )
 import           Language.Sonic.Compiler.Desugar.Internal
                                                 ( pattern SpanLoc
+                                                , pattern DiscardLoc
                                                 , withSourceProv
-                                                , withSourceProvSeq
                                                 , parsedAt
                                                 )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
@@ -112,8 +112,9 @@ desugarTyVarBinder (Syn.TyVarBinder var mkind) = do
 
 desugarContext
   :: FileContext m => Syn.Context Syn.Position -> m (IR.Context Desugar)
-desugarContext (Syn.Context ps) =
-  IR.Context <$> withSourceProvSeq desugarPredicate ps
+desugarContext (Syn.Context (DiscardLoc (Syn.Sequence ps))) = do
+  ps' <- mapM (withSourceProv desugarPredicate) ps
+  pure $ IR.Context ps'
 
 desugarPredicate
   :: FileContext m => Syn.Predicate Syn.Position -> m (IR.Predicate Desugar)

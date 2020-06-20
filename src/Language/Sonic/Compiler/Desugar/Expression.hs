@@ -7,6 +7,7 @@ module Language.Sonic.Compiler.Desugar.Expression
   , desugarLetDefn
   , desugarCaseArm
   , desugarGuard
+  , makePatBinds
   )
 where
 
@@ -46,6 +47,7 @@ import           Language.Sonic.Compiler.Desugar.Internal
                                                 , withSourceProvSeq
                                                 , generated
                                                 , parsedAt
+                                                , foldMapM
                                                 )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
                                                 ( Desugar
@@ -68,6 +70,9 @@ import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
                                                 ( Pat
                                                 , pattern Wildcard
                                                 )
+import qualified Language.Sonic.Compiler.IR.Attribute
+                                               as IR
+                                                ( Attrs )
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
                                                 ( CaseArm(..)
@@ -142,9 +147,9 @@ desugarExpr (Syn.Annotate expr type_) = do
 desugarExpr (Syn.Let defns body) = do
   binds <- withSourceProv desugarLetDefns defns
   body' <- withSourceProv desugarExpr body
-  pure $ IR.Let (generated [fmap IR.BindGroup binds]) body'
+  pure $ IR.Let [fmap IR.BindGroup binds] body'
  where
-  desugarLetDefns (Syn.Sequence ds) = concat <$> mapM go ds
+  desugarLetDefns (Syn.Sequence ds) = foldMapM go ds
   go (SpanLoc defnSpan defn) = do
     binds    <- desugarLetDefn defn
     bindProv <- parsedAt defnSpan
@@ -168,21 +173,25 @@ desugarLetDefn (Syn.LetDefn (DiscardLoc (Syn.AnnotatedBinder var type_)) body)
     var'  <- withSourceProv (pure . desugarVarName) var
     type' <- withSourceProv desugarType type_
     body' <- withSourceProv desugarExpr body
-    pure [IR.Bind var' (Just type') body']
+    pure [IR.Bind (generated mempty) var' (Just type') body']
 desugarLetDefn (Syn.LetDefn (DiscardLoc (Syn.PatBinder pat)) body) = do
   body'       <- withSourceProv desugarExpr body
   rhsTempName <- newName
-  let bind1 = IR.Bind (generated rhsTempName) Nothing body'
+  let bind1 = IR.Bind (generated mempty) (generated rhsTempName) Nothing body'
   pat' <- withSourceProv desugarPat pat
-  let binds = desugarLetDefnPatBinds pat' rhsTempName
+  let binds = makePatBinds (generated mempty) pat' rhsTempName
   pure (bind1 : binds)
 
-desugarLetDefnPatBinds :: WithProv IRPat.Pat -> Name Var -> [IR.Bind Desugar]
-desugarLetDefnPatBinds (WithProv patProv pat) rhsName = binds
+makePatBinds
+  :: WithProv (IR.Attrs Desugar)
+  -> WithProv IRPat.Pat
+  -> Name Var
+  -> [IR.Bind Desugar]
+makePatBinds attrs (WithProv patProv pat) rhsName = binds
  where
   binds        = map makeVarBind $ collectVars pat
   replacedProv = Derived passDesugar patProv
-  makeVarBind v = IR.Bind v Nothing (generated (makeExtractCase v))
+  makeVarBind v = IR.Bind attrs v Nothing (generated (makeExtractCase v))
   makeExtractCase v = IR.Case
     (generated (IR.Var (generated (localPath rhsName))))
     (generated [generated (makeExtractArm v)])
