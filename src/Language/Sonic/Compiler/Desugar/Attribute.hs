@@ -1,8 +1,7 @@
 {-# LANGUAGE PatternSynonyms #-}
 
 module Language.Sonic.Compiler.Desugar.Attribute
-  ( desugarWithAttrSet
-  , desugarAttrSet
+  ( desugarAttrSet
   , desugarAttrValue
   , desugarAttrValueList
   )
@@ -15,18 +14,14 @@ import qualified Language.Sonic.Parser         as Syn
                                                 ( Position(..) )
 import qualified Language.Sonic.Syntax.Location
                                                as Syn
-                                                ( L(..)
-                                                , Located
-                                                )
+                                                ( L(..) )
 import qualified Language.Sonic.Syntax.Sequence
                                                as Syn
                                                 ( Sequence(..) )
 import           Language.Sonic.Compiler.Context
                                                 ( FileContext(..) )
 import           Language.Sonic.Compiler.Provenance
-                                                ( WithProv(..)
-                                                , Prov(..)
-                                                )
+                                                ( WithProv(..) )
 import           Language.Sonic.Compiler.Desugar.Internal
                                                 ( pattern SpanLoc
                                                 , pattern DiscardLoc
@@ -34,9 +29,7 @@ import           Language.Sonic.Compiler.Desugar.Internal
                                                 , parsedAt
                                                 )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
-                                                ( Desugar
-                                                , passDesugar
-                                                )
+                                                ( Desugar )
 
 import qualified Language.Sonic.Syntax.Name    as Syn
                                                 ( EntityName(..)
@@ -47,8 +40,7 @@ import qualified Language.Sonic.Syntax.Path    as Syn
                                                 ( Path(..) )
 import qualified Language.Sonic.Syntax.Attribute
                                                as Syn
-                                                ( WithAttrSet(..)
-                                                , AttrSet(..)
+                                                ( AttrSet(..)
                                                 , Attr(..)
                                                 , AttrValue(..)
                                                 , AttrValueList(..)
@@ -71,19 +63,6 @@ import           Language.Sonic.Compiler.Desugar.Name
                                                 )
 import           Language.Sonic.Compiler.Desugar.Path
                                                 ( desugarPath )
-
-desugarWithAttrSet
-  :: FileContext m
-  => Syn.WithAttrSet a Syn.Position
-  -> m (WithProv (IR.Attrs Desugar), Syn.Located Syn.Position a)
-desugarWithAttrSet (Syn.WithAttrSet attrs x@(SpanLoc xSpan _)) = do
-  prov   <- parsedAt xSpan
-  attrs' <- mapM (withSourceProv desugarAttrSet) attrs
-  pure (foldMaybeAttrSet prov attrs', x)
- where
-  -- assign empty attribute set to 'Nothing'
-  foldMaybeAttrSet _    (Just as) = as
-  foldMaybeAttrSet prov Nothing   = WithProv (Derived passDesugar prov) mempty
 
 desugarAttrSet
   :: FileContext m => Syn.AttrSet Syn.Position -> m (IR.Attrs Desugar)

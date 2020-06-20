@@ -13,6 +13,7 @@ module Language.Sonic.Compiler.Desugar.Internal
   , parsedAt
   -- * Generic supplement functions
   , foldMapM
+  , desugarMaybeWithProv
   )
 where
 
@@ -107,3 +108,11 @@ foldMapM f = foldlM g mempty
   g acc x = do
     x' <- f x
     pure $! acc `mappend` x'
+
+desugarMaybeWithProv
+  :: (Applicative m, Monoid ir)
+  => (syn Syn.Position -> m (WithProv ir))
+  -> Maybe (syn Syn.Position)
+  -> m (WithProv ir)
+desugarMaybeWithProv _ Nothing  = pure $ generated mempty
+desugarMaybeWithProv f (Just x) = f x

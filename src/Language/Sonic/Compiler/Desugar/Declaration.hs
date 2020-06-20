@@ -2,6 +2,7 @@
 {-# LANGUAGE PatternSynonyms       #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE NamedFieldPuns        #-}
+{-# LANGUAGE TypeFamilies          #-}
 
 module Language.Sonic.Compiler.Desugar.Declaration
   ( desugarDataDecl
@@ -60,6 +61,7 @@ import           Language.Sonic.Compiler.Desugar.Internal
                                                 , pattern SpanLoc
                                                 , discardLoc
                                                 , withSourceProv
+                                                , desugarMaybeWithProv
                                                 , parsedAt
                                                 , generated
                                                 , foldMapM
@@ -75,7 +77,7 @@ import qualified Language.Sonic.Syntax.Name    as Syn
                                                 ( CtorName )
 import qualified Language.Sonic.Syntax.Attribute
                                                as Syn
-                                                ( WithAttrSet )
+                                                ( WithAttrSet(..) )
 import qualified Language.Sonic.Syntax.Declaration
                                                as Syn
                                                 ( DataDecl(..)
@@ -94,7 +96,6 @@ import qualified Language.Sonic.Compiler.IR.Attribute
 import qualified Language.Sonic.Compiler.IR.Type
                                                as IR
                                                 ( Type
-                                                , Context
                                                 )
 import qualified Language.Sonic.Compiler.IR.Expression
                                                as IR
@@ -124,7 +125,7 @@ import           Language.Sonic.Compiler.Desugar.Name
 import           Language.Sonic.Compiler.Desugar.Path
                                                 ( desugarPath )
 import           Language.Sonic.Compiler.Desugar.Attribute
-                                                ( desugarWithAttrSet )
+                                                ( desugarAttrSet )
 import           Language.Sonic.Compiler.Desugar.Type
                                                 ( desugarTyVarBinder
                                                 , desugarType
@@ -167,16 +168,14 @@ desugarDataCtorDecl
   :: FileContext m
   => Syn.WithAttrSet (Syn.SignatureDecl Syn.CtorName) Syn.Position
   -> m [IR.DataCtorDecl Desugar]
-desugarDataCtorDecl sigDeclWithAs = do
-  (attrs, sig) <- desugarWithAttrSet sigDeclWithAs
-  desugarInner attrs $ discardLoc sig
+desugarDataCtorDecl (Syn.WithAttrSet attrs (DiscardLoc Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ })) = do
+  attrs' <- desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
+  type' <- withSourceProv desugarType type_
+  mapM (desugarInnerWithName attrs' type') names
  where
-  desugarInner attrs Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }
-    = mapM (desugarInnerWithName attrs type_) names
-  desugarInnerWithName attrs type_ name = do
+  desugarInnerWithName attrs' type' name = do
     name' <- withSourceProv (pure . desugarCtorName) name
-    type' <- withSourceProv desugarType type_
-    pure IR.DataCtorDecl { IR.attrs, IR.name = name', IR.type_ = type' }
+    pure IR.DataCtorDecl { IR.attrs = attrs', IR.name = name', IR.type_ = type' }
 
 desugarClassDecl
   :: (FileContext m, MonadUnique m, MonadReport m)
@@ -185,7 +184,7 @@ desugarClassDecl
   -> m (IR.ClassDecl Desugar)
 desugarClassDecl attrs Syn.ClassDecl { Syn.context, Syn.className, Syn.vars = Syn.Sequence vars, Syn.methods }
   = do
-    context' <- foldContext <$> mapM (withSourceProv desugarContext) context
+    context' <- desugarMaybeWithProv (withSourceProv desugarContext) context
     className' <- withSourceProv (pure . desugarClassName) className
     vars' <- mapM (withSourceProv desugarTyVarBinder) vars
     (methods', defaultBinds) <- desugarClassMethods methods
@@ -200,10 +199,10 @@ desugarClassDecl attrs Syn.ClassDecl { Syn.context, Syn.className, Syn.vars = Sy
  where
   desugarClassMethods Nothing = pure ([], [])
   desugarClassMethods (Just (DiscardLoc (Syn.WhereClause (DiscardLoc (Syn.Sequence decls)))))
-    = foldMapM desugarClassMethodSimpleDeclWithAs decls
-  desugarClassMethodSimpleDeclWithAs (DiscardLoc declWithAs) = do
-    (declAs, decl) <- desugarWithAttrSet declWithAs
-    decl' <- desugarClassMethodSimpleDeclWithLoc declAs decl
+    = foldMapM (desugarClassMethodSimpleDeclWithAs . discardLoc) decls
+  desugarClassMethodSimpleDeclWithAs (Syn.WithAttrSet declAs decl) = do
+    declAs' <- desugarMaybeWithProv (withSourceProv desugarAttrSet) declAs
+    decl' <- desugarClassMethodSimpleDeclWithLoc declAs' decl
     pure $ destruct decl'
   destruct (Signatures sigs) = (sigs, [])
   destruct (Bindings binds) = ([], binds)
@@ -260,7 +259,7 @@ desugarInstanceDecl
   -> m (IR.InstanceDecl Desugar)
 desugarInstanceDecl attrs Syn.InstanceDecl { Syn.context, Syn.className, Syn.types = Syn.Sequence types, Syn.methods }
   = do
-    context'   <- foldContext <$> mapM (withSourceProv desugarContext) context
+    context'   <- desugarMaybeWithProv (withSourceProv desugarContext) context
     className' <- withSourceProv (pure . desugarPath desugarClassName) className
     types'     <- mapM (withSourceProv desugarType) types
     methods'   <- desugarInstanceMethods methods
@@ -371,9 +370,9 @@ desugarSimpleDecls decls = do
     Sig prov _ name _ ->
       report Report.Error (Report.StandaloneTypeSignature prov name) $> mempty
     Bind bind -> pure [bind]
-  desugarSimpleDeclWithAs declWithAs = do
-    (attrs, decl) <- lift $ desugarWithAttrSet declWithAs
-    desugarSimpleDecl attrs decl
+  desugarSimpleDeclWithAs (Syn.WithAttrSet attrs decl) = do
+    attrs' <- lift $ desugarMaybeWithProv (withSourceProv desugarAttrSet) attrs
+    desugarSimpleDecl attrs' decl
   desugarSimpleDecl (WithProv _ attrs) (SpanLoc declSpan (Syn.Signature Syn.SignatureDecl { Syn.names = DiscardLoc (Syn.Sequence names), Syn.type_ }))
     = do
       declProv <- lift $ parsedAt declSpan
@@ -428,8 +427,3 @@ desugarSimpleDecls decls = do
       , IR.type_ = Just type_
       , IR.rhs
       }
-
-foldContext
-  :: Maybe (WithProv (IR.Context Desugar)) -> WithProv (IR.Context Desugar)
-foldContext Nothing  = generated mempty
-foldContext (Just x) = x
