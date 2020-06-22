@@ -1,0 +1,1226 @@
+( Module
+    { attrs =
+        [ WithProv
+            ( Source
+                ( Parsed
+                    ( Location
+                        { file = "test/golden/attribute.sonic"
+                        , span = Span
+                            { begin = Position
+                                { line = Line 1
+                                , column = Column 1
+                                }
+                            , end = Position
+                                { line = Line 3
+                                , column = Column 1
+                                }
+                            }
+                        }
+                    )
+                )
+            )
+            ( Attrs
+                ( fromList
+                    [
+                        ( AttrKey "some_module_attribute"
+                        , WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 1
+                                                , column = Column 4
+                                                }
+                                            , end = Position
+                                                { line = Line 1
+                                                , column = Column 38
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Value
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/attribute.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 1
+                                                        , column = Column 28
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 1
+                                                        , column = Column 38
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    ) ( TextValue "awesome!" )
+                                )
+                            )
+                        )
+                    ]
+                )
+            )
+        ]
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Source
+                        ( Parsed
+                            ( Location
+                                { file = "test/golden/attribute.sonic"
+                                , span = Span
+                                    { begin = Position
+                                        { line = Line 4
+                                        , column = Column 1
+                                        }
+                                    , end = Position
+                                        { line = Line 5
+                                        , column = Column 1
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 3
+                                                , column = Column 2
+                                                }
+                                            , end = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Attrs
+                                ( fromList
+                                    [
+                                        ( AttrKey "inline"
+                                        , WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 3
+                                                                , column = Column 3
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 3
+                                                                , column = Column 9
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            ) Name
+                                        )
+                                    ]
+                                )
+                            )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 4
+                                                , column = Column 4
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "id" )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Lambda ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Unique ( MkUnique 0 ) )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Case ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Apply ()
+                                                ( WithProv
+                                                    ( Source ( Generated desugar ) )
+                                                    ( Ctor ()
+                                                        ( WithProv
+                                                            ( Source ( Generated desugar ) )
+                                                            ( Path
+                                                                { prefix = Just Global
+                                                                , inner = SimplePath
+                                                                    { parent = Just
+                                                                        ( SimplePath
+                                                                            { parent = Just
+                                                                                ( SimplePath
+                                                                                    { parent = Nothing
+                                                                                    , name = Name "std"
+                                                                                    }
+                                                                                )
+                                                                            , name = Name "tuple"
+                                                                            }
+                                                                        )
+                                                                    , name = Name "Tuple1"
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( WithProv
+                                                    ( Source ( Generated desugar ) )
+                                                    ( Var ()
+                                                        ( WithProv
+                                                            ( Source ( Generated desugar ) )
+                                                            ( Path
+                                                                { prefix = Just Local
+                                                                , inner = SimplePath
+                                                                    { parent = Nothing
+                                                                    , name = Unique ( MkUnique 0 )
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Derived desugar
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/attribute.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 4
+                                                                    , column = Column 4
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 5
+                                                                    , column = Column 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            [ WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/attribute.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 4
+                                                                    , column = Column 4
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 5
+                                                                    , column = Column 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( CaseArm
+                                                    { pat = WithProv
+                                                        ( Source ( Generated desugar ) )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source ( Generated desugar ) )
+                                                                ( Path
+                                                                    { prefix = Just Global
+                                                                    , inner = SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Just
+                                                                                    ( SimplePath
+                                                                                        { parent = Nothing
+                                                                                        , name = Name "std"
+                                                                                        }
+                                                                                    )
+                                                                                , name = Name "tuple"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "Tuple1"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                            [ WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/attribute.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 4
+                                                                                    , column = Column 4
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 4
+                                                                                    , column = Column 6
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Var ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/attribute.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 4
+                                                                                            , column = Column 4
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 4
+                                                                                            , column = Column 6
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        ) ( Name "x" )
+                                                                    )
+                                                                )
+                                                            ]
+                                                        )
+                                                    , guard = Nothing
+                                                    , body = WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/attribute.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 8
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 5
+                                                                            , column = Column 1
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Var ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/attribute.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 4
+                                                                                    , column = Column 8
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 5
+                                                                                    , column = Column 1
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "x"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/attribute.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 11
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 12
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 10
+                                                , column = Column 2
+                                                }
+                                            , end = Position
+                                                { line = Line 11
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Attrs
+                                ( fromList
+                                    [
+                                        ( AttrKey "cfg"
+                                        , WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 10
+                                                                , column = Column 3
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 10
+                                                                , column = Column 34
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Record
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/attribute.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 6
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 34
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( Attrs
+                                                        ( fromList
+                                                            [
+                                                                ( AttrKey "arch"
+                                                                , WithProv
+                                                                    ( Source
+                                                                        ( Parsed
+                                                                            ( Location
+                                                                                { file = "test/golden/attribute.sonic"
+                                                                                , span = Span
+                                                                                    { begin = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 21
+                                                                                        }
+                                                                                    , end = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 33
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( Value
+                                                                        ( WithProv
+                                                                            ( Source
+                                                                                ( Parsed
+                                                                                    ( Location
+                                                                                        { file = "test/golden/attribute.sonic"
+                                                                                        , span = Span
+                                                                                            { begin = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 28
+                                                                                                }
+                                                                                            , end = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 33
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    )
+                                                                                )
+                                                                            ) ( TextValue "x64" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            ,
+                                                                ( AttrKey "os"
+                                                                , WithProv
+                                                                    ( Source
+                                                                        ( Parsed
+                                                                            ( Location
+                                                                                { file = "test/golden/attribute.sonic"
+                                                                                , span = Span
+                                                                                    { begin = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 7
+                                                                                        }
+                                                                                    , end = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 19
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( Value
+                                                                        ( WithProv
+                                                                            ( Source
+                                                                                ( Parsed
+                                                                                    ( Location
+                                                                                        { file = "test/golden/attribute.sonic"
+                                                                                        , span = Span
+                                                                                            { begin = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 12
+                                                                                                }
+                                                                                            , end = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 19
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    )
+                                                                                )
+                                                                            ) ( TextValue "linux" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            ]
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ,
+                                        ( AttrKey "specialize"
+                                        , WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 10
+                                                                , column = Column 36
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 10
+                                                                , column = Column 54
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Value
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/attribute.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 49
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 54
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    ) ( TextValue "all" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 11
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 11
+                                                , column = Column 17
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "someAwesomeFunc" )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 1 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/attribute.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 11
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 11
+                                                                        , column = Column 17
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/attribute.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 11
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 11
+                                                                            , column = Column 17
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "someAwesomeFunc" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/attribute.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 11
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 11
+                                                                            , column = Column 17
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "someAwesomeFunc"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/attribute.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 11
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 12
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 10
+                                                , column = Column 2
+                                                }
+                                            , end = Position
+                                                { line = Line 11
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Attrs
+                                ( fromList
+                                    [
+                                        ( AttrKey "cfg"
+                                        , WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 10
+                                                                , column = Column 3
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 10
+                                                                , column = Column 34
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Record
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/attribute.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 6
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 34
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( Attrs
+                                                        ( fromList
+                                                            [
+                                                                ( AttrKey "arch"
+                                                                , WithProv
+                                                                    ( Source
+                                                                        ( Parsed
+                                                                            ( Location
+                                                                                { file = "test/golden/attribute.sonic"
+                                                                                , span = Span
+                                                                                    { begin = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 21
+                                                                                        }
+                                                                                    , end = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 33
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( Value
+                                                                        ( WithProv
+                                                                            ( Source
+                                                                                ( Parsed
+                                                                                    ( Location
+                                                                                        { file = "test/golden/attribute.sonic"
+                                                                                        , span = Span
+                                                                                            { begin = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 28
+                                                                                                }
+                                                                                            , end = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 33
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    )
+                                                                                )
+                                                                            ) ( TextValue "x64" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            ,
+                                                                ( AttrKey "os"
+                                                                , WithProv
+                                                                    ( Source
+                                                                        ( Parsed
+                                                                            ( Location
+                                                                                { file = "test/golden/attribute.sonic"
+                                                                                , span = Span
+                                                                                    { begin = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 7
+                                                                                        }
+                                                                                    , end = Position
+                                                                                        { line = Line 10
+                                                                                        , column = Column 19
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( Value
+                                                                        ( WithProv
+                                                                            ( Source
+                                                                                ( Parsed
+                                                                                    ( Location
+                                                                                        { file = "test/golden/attribute.sonic"
+                                                                                        , span = Span
+                                                                                            { begin = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 12
+                                                                                                }
+                                                                                            , end = Position
+                                                                                                { line = Line 10
+                                                                                                , column = Column 19
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    )
+                                                                                )
+                                                                            ) ( TextValue "linux" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            ]
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ,
+                                        ( AttrKey "specialize"
+                                        , WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 10
+                                                                , column = Column 36
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 10
+                                                                , column = Column 54
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Value
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/attribute.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 49
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 10
+                                                                        , column = Column 54
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    ) ( TextValue "all" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 1 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/attribute.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 11
+                                                , column = Column 19
+                                                }
+                                            , end = Position
+                                                { line = Line 12
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Var ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/attribute.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 11
+                                                        , column = Column 19
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 12
+                                                        , column = Column 1
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( Path
+                                        { prefix = Just Primitive
+                                        , inner = SimplePath
+                                            { parent = Nothing
+                                            , name = Name "someAwesomePrimitive"
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls =
+        [ WithProv
+            ( Source
+                ( Parsed
+                    ( Location
+                        { file = "test/golden/attribute.sonic"
+                        , span = Span
+                            { begin = Position
+                                { line = Line 8
+                                , column = Column 1
+                                }
+                            , end = Position
+                                { line = Line 10
+                                , column = Column 1
+                                }
+                            }
+                        }
+                    )
+                )
+            )
+            ( DataDecl
+                { attrs = WithProv
+                    ( Source
+                        ( Parsed
+                            ( Location
+                                { file = "test/golden/attribute.sonic"
+                                , span = Span
+                                    { begin = Position
+                                        { line = Line 7
+                                        , column = Column 2
+                                        }
+                                    , end = Position
+                                        { line = Line 8
+                                        , column = Column 1
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                    )
+                    ( Attrs
+                        ( fromList
+                            [
+                                ( AttrKey "derive"
+                                , WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/attribute.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 7
+                                                        , column = Column 3
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 7
+                                                        , column = Column 43
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( List
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/attribute.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 7
+                                                                , column = Column 9
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 7
+                                                                , column = Column 43
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            [ WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/attribute.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 7
+                                                                    , column = Column 10
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 7
+                                                                    , column = Column 26
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( RefValue
+                                                    ( Var
+                                                        ( Path
+                                                            { prefix = Just Global
+                                                            , inner = SimplePath
+                                                                { parent = Just
+                                                                    ( SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "std"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "derive"
+                                                                        }
+                                                                    )
+                                                                , name = Name "show"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            , WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/attribute.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 7
+                                                                    , column = Column 28
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 7
+                                                                    , column = Column 42
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( RefValue
+                                                    ( Var
+                                                        ( Path
+                                                            { prefix = Just Global
+                                                            , inner = SimplePath
+                                                                { parent = Just
+                                                                    ( SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "std"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "derive"
+                                                                        }
+                                                                    )
+                                                                , name = Name "eq"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            ]
+                        )
+                    )
+                , name = WithProv
+                    ( Source
+                        ( Parsed
+                            ( Location
+                                { file = "test/golden/attribute.sonic"
+                                , span = Span
+                                    { begin = Position
+                                        { line = Line 8
+                                        , column = Column 6
+                                        }
+                                    , end = Position
+                                        { line = Line 8
+                                        , column = Column 11
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                    ) ( Name "Void" )
+                , vars = []
+                , ctors = []
+                }
+            )
+        ]
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+, []
+)

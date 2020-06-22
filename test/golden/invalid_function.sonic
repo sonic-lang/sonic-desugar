@@ -1,0 +1,3 @@
+or | True        = const True
+   | False True  = True
+   | False False = False

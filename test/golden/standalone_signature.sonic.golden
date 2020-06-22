@@ -1,0 +1,294 @@
+( Module
+    { attrs = []
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Derived desugar
+                        ( Derived desugar
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/standalone_signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 5
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Derived desugar
+                                ( Source ( Generated desugar ) )
+                            )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/standalone_signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 4
+                                                , column = Column 10
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "notAlone" )
+                        , type_ = Just
+                            ( WithProv
+                                ( Source
+                                    ( Parsed
+                                        ( Location
+                                            { file = "test/golden/standalone_signature.sonic"
+                                            , span = Span
+                                                { begin = Position
+                                                    { line = Line 3
+                                                    , column = Column 13
+                                                    }
+                                                , end = Position
+                                                    { line = Line 3
+                                                    , column = Column 17
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    )
+                                )
+                                ( Ctor ()
+                                    ( WithProv
+                                        ( Source
+                                            ( Parsed
+                                                ( Location
+                                                    { file = "test/golden/standalone_signature.sonic"
+                                                    , span = Span
+                                                        { begin = Position
+                                                            { line = Line 3
+                                                            , column = Column 13
+                                                            }
+                                                        , end = Position
+                                                            { line = Line 3
+                                                            , column = Column 17
+                                                            }
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                        ( Path
+                                            { prefix = Nothing
+                                            , inner = SimplePath
+                                                { parent = Nothing
+                                                , name = Name "Int"
+                                                }
+                                            }
+                                        )
+                                    )
+                                )
+                            )
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 0 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/standalone_signature.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 4
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 4
+                                                                        , column = Column 10
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/standalone_signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 10
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "notAlone" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/standalone_signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 10
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "notAlone"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/standalone_signature.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 4
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 5
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 0 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/standalone_signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 12
+                                                }
+                                            , end = Position
+                                                { line = Line 5
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Literal ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/standalone_signature.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 4
+                                                        , column = Column 12
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 5
+                                                        , column = Column 1
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    ) ( Integer 1 )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls = []
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+, [ TestReport Error "StandaloneTypeSignature {signatureDeclProv = Source (Parsed (Location {file = "test/golden/standalone_signature.sonic", span = Span {begin = Position {line = Line 1, column = Column 1}, end = Position {line = Line 1, column = Column 14}}})), declaredName = Name "alone"}" ]
+)

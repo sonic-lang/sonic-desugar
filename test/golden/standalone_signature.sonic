@@ -1,0 +1,4 @@
+alone :: Int ;;
+
+notAlone :: Int ;;
+notAlone = 1

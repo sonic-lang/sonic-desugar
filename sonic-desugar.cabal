@@ -67,3 +67,28 @@ library
   ghc-options:
     -Wall -Wcompat -Widentities -Wincomplete-record-updates
     -Wincomplete-uni-patterns -Wredundant-constraints
+
+test-suite test
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  main-is:            golden.hs
+  build-depends:
+      base
+    , directory
+    , filepath
+    , membership
+    , pretty-simple
+    , sonic-desugar
+    , sonic-ir
+    , sonic-pass
+    , sonic-syntax
+    , string-conversions
+    , tasty
+    , tasty-golden
+    , transformers
+
+  -- cabal-fmt: expand test
+  other-modules:      TestImport
+  default-language:   Haskell2010
+  default-extensions: DeriveGeneric
+  ghc-options:        -Wall -threaded -rtsopts -with-rtsopts=-N

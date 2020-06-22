@@ -1,0 +1,3 @@
+add, sub :: Int -> Int -> Int ;;
+add = #prim.add ;;
+sub = #prim.sub ;;

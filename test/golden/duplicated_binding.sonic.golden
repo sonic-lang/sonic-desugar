@@ -1,0 +1,312 @@
+( Module
+    { attrs = []
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/duplicated_binding.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 2
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 3
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/duplicated_binding.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 2
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 2
+                                                , column = Column 3
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "a" )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 1 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/duplicated_binding.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 2
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 2
+                                                                        , column = Column 3
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/duplicated_binding.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 3
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "a" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/duplicated_binding.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 3
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "a"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/duplicated_binding.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 1
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 1
+                                            , column = Column 7
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 0 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/duplicated_binding.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 1
+                                                , column = Column 5
+                                                }
+                                            , end = Position
+                                                { line = Line 1
+                                                , column = Column 7
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Literal ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/duplicated_binding.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 1
+                                                        , column = Column 5
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 1
+                                                        , column = Column 7
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    ) ( Integer 1 )
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/duplicated_binding.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 2
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 3
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 1 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/duplicated_binding.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 2
+                                                , column = Column 5
+                                                }
+                                            , end = Position
+                                                { line = Line 3
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Literal ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/duplicated_binding.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 2
+                                                        , column = Column 5
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 3
+                                                        , column = Column 1
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    ) ( Integer 2 )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls = []
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+, [ TestReport Error "DuplicatedBindings {bindingDeclProvs = [Derived desugar (Source (Parsed (Location {file = "test/golden/duplicated_binding.sonic", span = Span {begin = Position {line = Line 2, column = Column 1}, end = Position {line = Line 3, column = Column 1}}}))),Derived desugar (Source (Parsed (Location {file = "test/golden/duplicated_binding.sonic", span = Span {begin = Position {line = Line 1, column = Column 1}, end = Position {line = Line 1, column = Column 7}}})))], declaredName = Name "a"}" ]
+)

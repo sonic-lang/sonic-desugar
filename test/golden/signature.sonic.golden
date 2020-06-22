@@ -1,0 +1,1014 @@
+( Module
+    { attrs = []
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Derived desugar
+                        ( Derived desugar
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 2
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 2
+                                                , column = Column 17
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Derived desugar
+                                ( Source ( Generated desugar ) )
+                            )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 2
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 2
+                                                , column = Column 5
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "add" )
+                        , type_ = Just
+                            ( WithProv
+                                ( Source
+                                    ( Parsed
+                                        ( Location
+                                            { file = "test/golden/signature.sonic"
+                                            , span = Span
+                                                { begin = Position
+                                                    { line = Line 1
+                                                    , column = Column 13
+                                                    }
+                                                , end = Position
+                                                    { line = Line 1
+                                                    , column = Column 31
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    )
+                                )
+                                ( XType
+                                    ( XInfix
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 17
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 24
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( XType
+                                                ( XInfix
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/signature.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 17
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 17
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "Int"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 20
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( TypeInfix
+                                                            ( Path
+                                                                { prefix = Nothing
+                                                                , inner = SimplePath
+                                                                    { parent = Nothing
+                                                                    , name = Name "->"
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 20
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 24
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/signature.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 20
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 24
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "Int"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 24
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 27
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( TypeInfix
+                                                ( Path
+                                                    { prefix = Nothing
+                                                    , inner = SimplePath
+                                                        { parent = Nothing
+                                                        , name = Name "->"
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 27
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 31
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Ctor ()
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/signature.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 1
+                                                                        , column = Column 27
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 1
+                                                                        , column = Column 31
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( Path
+                                                        { prefix = Nothing
+                                                        , inner = SimplePath
+                                                            { parent = Nothing
+                                                            , name = Name "Int"
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 0 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/signature.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 2
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 2
+                                                                        , column = Column 5
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 5
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "add" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 5
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "add"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Derived desugar
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 3
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 3
+                                                , column = Column 17
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Derived desugar
+                                ( Source ( Generated desugar ) )
+                            )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 3
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 3
+                                                , column = Column 5
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "sub" )
+                        , type_ = Just
+                            ( WithProv
+                                ( Source
+                                    ( Parsed
+                                        ( Location
+                                            { file = "test/golden/signature.sonic"
+                                            , span = Span
+                                                { begin = Position
+                                                    { line = Line 1
+                                                    , column = Column 13
+                                                    }
+                                                , end = Position
+                                                    { line = Line 1
+                                                    , column = Column 31
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    )
+                                )
+                                ( XType
+                                    ( XInfix
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 17
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 24
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( XType
+                                                ( XInfix
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/signature.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 17
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 17
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "Int"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 17
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 20
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( TypeInfix
+                                                            ( Path
+                                                                { prefix = Nothing
+                                                                , inner = SimplePath
+                                                                    { parent = Nothing
+                                                                    , name = Name "->"
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 20
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 24
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/signature.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 20
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 24
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "Int"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 24
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 27
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( TypeInfix
+                                                ( Path
+                                                    { prefix = Nothing
+                                                    , inner = SimplePath
+                                                        { parent = Nothing
+                                                        , name = Name "->"
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/signature.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 1
+                                                                , column = Column 27
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 1
+                                                                , column = Column 31
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Ctor ()
+                                                ( WithProv
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/signature.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 1
+                                                                        , column = Column 27
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 1
+                                                                        , column = Column 31
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                    ( Path
+                                                        { prefix = Nothing
+                                                        , inner = SimplePath
+                                                            { parent = Nothing
+                                                            , name = Name "Int"
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 1 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/signature.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 3
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 3
+                                                                        , column = Column 5
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 5
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "sub" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/signature.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 5
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "sub"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/signature.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 2
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 2
+                                            , column = Column 17
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 0 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 2
+                                                , column = Column 7
+                                                }
+                                            , end = Position
+                                                { line = Line 2
+                                                , column = Column 17
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Var ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/signature.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 2
+                                                        , column = Column 7
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 2
+                                                        , column = Column 17
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( Path
+                                        { prefix = Just Primitive
+                                        , inner = SimplePath
+                                            { parent = Just
+                                                ( SimplePath
+                                                    { parent = Nothing
+                                                    , name = Name "prim"
+                                                    }
+                                                )
+                                            , name = Name "add"
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/signature.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 3
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 3
+                                            , column = Column 17
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 1 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/signature.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 3
+                                                , column = Column 7
+                                                }
+                                            , end = Position
+                                                { line = Line 3
+                                                , column = Column 17
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Var ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/signature.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 3
+                                                        , column = Column 7
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 3
+                                                        , column = Column 17
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( Path
+                                        { prefix = Just Primitive
+                                        , inner = SimplePath
+                                            { parent = Just
+                                                ( SimplePath
+                                                    { parent = Nothing
+                                                    , name = Name "prim"
+                                                    }
+                                                )
+                                            , name = Name "sub"
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls = []
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+, []
+)

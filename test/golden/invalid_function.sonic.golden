@@ -1,0 +1,758 @@
+( Module
+    { attrs = []
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Source
+                        ( Parsed
+                            ( Location
+                                { file = "test/golden/invalid_function.sonic"
+                                , span = Span
+                                    { begin = Position
+                                        { line = Line 1
+                                        , column = Column 1
+                                        }
+                                    , end = Position
+                                        { line = Line 4
+                                        , column = Column 1
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/invalid_function.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 1
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 1
+                                                , column = Column 4
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "or" )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Lambda ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Unique ( MkUnique 0 ) )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Case ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Apply ()
+                                                ( WithProv
+                                                    ( Source ( Generated desugar ) )
+                                                    ( Ctor ()
+                                                        ( WithProv
+                                                            ( Source ( Generated desugar ) )
+                                                            ( Path
+                                                                { prefix = Just Global
+                                                                , inner = SimplePath
+                                                                    { parent = Just
+                                                                        ( SimplePath
+                                                                            { parent = Just
+                                                                                ( SimplePath
+                                                                                    { parent = Nothing
+                                                                                    , name = Name "std"
+                                                                                    }
+                                                                                )
+                                                                            , name = Name "tuple"
+                                                                            }
+                                                                        )
+                                                                    , name = Name "Tuple1"
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( WithProv
+                                                    ( Source ( Generated desugar ) )
+                                                    ( Var ()
+                                                        ( WithProv
+                                                            ( Source ( Generated desugar ) )
+                                                            ( Path
+                                                                { prefix = Just Local
+                                                                , inner = SimplePath
+                                                                    { parent = Nothing
+                                                                    , name = Unique ( MkUnique 0 )
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( WithProv
+                                            ( Derived desugar
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/invalid_function.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 1
+                                                                    , column = Column 4
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 4
+                                                                    , column = Column 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            [ WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/invalid_function.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 1
+                                                                    , column = Column 6
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 2
+                                                                    , column = Column 4
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( CaseArm
+                                                    { pat = WithProv
+                                                        ( Source ( Generated desugar ) )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source ( Generated desugar ) )
+                                                                ( Path
+                                                                    { prefix = Just Global
+                                                                    , inner = SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Just
+                                                                                    ( SimplePath
+                                                                                        { parent = Nothing
+                                                                                        , name = Name "std"
+                                                                                        }
+                                                                                    )
+                                                                                , name = Name "tuple"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "Tuple1"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                            [ WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 6
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 18
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 1
+                                                                                            , column = Column 6
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 1
+                                                                                            , column = Column 18
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "True"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    ) []
+                                                                )
+                                                            ]
+                                                        )
+                                                    , guard = Nothing
+                                                    , body = WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 1
+                                                                            , column = Column 20
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 4
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Apply ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 20
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 26
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Var ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 1
+                                                                                            , column = Column 20
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 1
+                                                                                            , column = Column 26
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "const"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 1
+                                                                                    , column = Column 26
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 4
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 1
+                                                                                            , column = Column 26
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 2
+                                                                                            , column = Column 4
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "True"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                )
+                                            , WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/invalid_function.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 2
+                                                                    , column = Column 6
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 3
+                                                                    , column = Column 4
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( CaseArm
+                                                    { pat = WithProv
+                                                        ( Source ( Generated desugar ) )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source ( Generated desugar ) )
+                                                                ( Path
+                                                                    { prefix = Just Global
+                                                                    , inner = SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Just
+                                                                                    ( SimplePath
+                                                                                        { parent = Nothing
+                                                                                        , name = Name "std"
+                                                                                        }
+                                                                                    )
+                                                                                , name = Name "tuple"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "Tuple1"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                            [ WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 6
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 12
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 2
+                                                                                            , column = Column 6
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 2
+                                                                                            , column = Column 12
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "False"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    ) []
+                                                                )
+                                                            , WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 12
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 18
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 2
+                                                                                            , column = Column 12
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 2
+                                                                                            , column = Column 18
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "True"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    ) []
+                                                                )
+                                                            ]
+                                                        )
+                                                    , guard = Nothing
+                                                    , body = WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 2
+                                                                            , column = Column 20
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 4
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 2
+                                                                                    , column = Column 20
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 4
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "True"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                )
+                                            , WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/invalid_function.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 3
+                                                                    , column = Column 6
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 4
+                                                                    , column = Column 1
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( CaseArm
+                                                    { pat = WithProv
+                                                        ( Source ( Generated desugar ) )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source ( Generated desugar ) )
+                                                                ( Path
+                                                                    { prefix = Just Global
+                                                                    , inner = SimplePath
+                                                                        { parent = Just
+                                                                            ( SimplePath
+                                                                                { parent = Just
+                                                                                    ( SimplePath
+                                                                                        { parent = Nothing
+                                                                                        , name = Name "std"
+                                                                                        }
+                                                                                    )
+                                                                                , name = Name "tuple"
+                                                                                }
+                                                                            )
+                                                                        , name = Name "Tuple1"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                            [ WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 6
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 12
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 3
+                                                                                            , column = Column 6
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 3
+                                                                                            , column = Column 12
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "False"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    ) []
+                                                                )
+                                                            , WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 12
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 18
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Ctor ()
+                                                                    ( WithProv
+                                                                        ( Source
+                                                                            ( Parsed
+                                                                                ( Location
+                                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                                    , span = Span
+                                                                                        { begin = Position
+                                                                                            { line = Line 3
+                                                                                            , column = Column 12
+                                                                                            }
+                                                                                        , end = Position
+                                                                                            { line = Line 3
+                                                                                            , column = Column 18
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                )
+                                                                            )
+                                                                        )
+                                                                        ( Path
+                                                                            { prefix = Nothing
+                                                                            , inner = SimplePath
+                                                                                { parent = Nothing
+                                                                                , name = Name "False"
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    ) []
+                                                                )
+                                                            ]
+                                                        )
+                                                    , guard = Nothing
+                                                    , body = WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/invalid_function.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 3
+                                                                            , column = Column 20
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 1
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Ctor ()
+                                                            ( WithProv
+                                                                ( Source
+                                                                    ( Parsed
+                                                                        ( Location
+                                                                            { file = "test/golden/invalid_function.sonic"
+                                                                            , span = Span
+                                                                                { begin = Position
+                                                                                    { line = Line 3
+                                                                                    , column = Column 20
+                                                                                    }
+                                                                                , end = Position
+                                                                                    { line = Line 4
+                                                                                    , column = Column 1
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                )
+                                                                ( Path
+                                                                    { prefix = Nothing
+                                                                    , inner = SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "False"
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls = []
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+,
+    [ TestReport Error "FunctionArgumentLengthMismatch {patsProv = Source (Parsed (Location {file = "test/golden/invalid_function.sonic", span = Span {begin = Position {line = Line 2, column = Column 6}, end = Position {line = Line 2, column = Column 18}}}))}"
+    , TestReport Error "FunctionArgumentLengthMismatch {patsProv = Source (Parsed (Location {file = "test/golden/invalid_function.sonic", span = Span {begin = Position {line = Line 3, column = Column 6}, end = Position {line = Line 3, column = Column 18}}}))}"
+    ]
+)

@@ -1,0 +1,450 @@
+( Module
+    { attrs = []
+    , bindings =
+        [ WithProv
+            ( Source ( Generated desugar ) )
+            ( BindGroup
+                [ WithProv
+                    ( Derived desugar
+                        ( Derived desugar
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/simple.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 5
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Derived desugar
+                                ( Source ( Generated desugar ) )
+                            )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/simple.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 1
+                                                }
+                                            , end = Position
+                                                { line = Line 4
+                                                , column = Column 6
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            ) ( Name "main" )
+                        , type_ = Just
+                            ( WithProv
+                                ( Source
+                                    ( Parsed
+                                        ( Location
+                                            { file = "test/golden/simple.sonic"
+                                            , span = Span
+                                                { begin = Position
+                                                    { line = Line 3
+                                                    , column = Column 9
+                                                    }
+                                                , end = Position
+                                                    { line = Line 3
+                                                    , column = Column 15
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    )
+                                )
+                                ( Apply ()
+                                    ( WithProv
+                                        ( Source
+                                            ( Parsed
+                                                ( Location
+                                                    { file = "test/golden/simple.sonic"
+                                                    , span = Span
+                                                        { begin = Position
+                                                            { line = Line 3
+                                                            , column = Column 9
+                                                            }
+                                                        , end = Position
+                                                            { line = Line 3
+                                                            , column = Column 12
+                                                            }
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                        ( Ctor ()
+                                            ( WithProv
+                                                ( Source
+                                                    ( Parsed
+                                                        ( Location
+                                                            { file = "test/golden/simple.sonic"
+                                                            , span = Span
+                                                                { begin = Position
+                                                                    { line = Line 3
+                                                                    , column = Column 9
+                                                                    }
+                                                                , end = Position
+                                                                    { line = Line 3
+                                                                    , column = Column 12
+                                                                    }
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                                ( Path
+                                                    { prefix = Nothing
+                                                    , inner = SimplePath
+                                                        { parent = Nothing
+                                                        , name = Name "IO"
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( WithProv
+                                        ( Source
+                                            ( Parsed
+                                                ( Location
+                                                    { file = "test/golden/simple.sonic"
+                                                    , span = Span
+                                                        { begin = Position
+                                                            { line = Line 3
+                                                            , column = Column 12
+                                                            }
+                                                        , end = Position
+                                                            { line = Line 3
+                                                            , column = Column 15
+                                                            }
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                        ( Ctor ()
+                                            ( WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/simple.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 3
+                                                                        , column = Column 12
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 3
+                                                                        , column = Column 15
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Path
+                                                    { prefix = Just Global
+                                                    , inner = SimplePath
+                                                        { parent = Just
+                                                            ( SimplePath
+                                                                { parent = Just
+                                                                    ( SimplePath
+                                                                        { parent = Nothing
+                                                                        , name = Name "std"
+                                                                        }
+                                                                    )
+                                                                , name = Name "tuple"
+                                                                }
+                                                            )
+                                                        , name = Name "Tuple0"
+                                                        }
+                                                    }
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        , rhs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Case ()
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source ( Generated desugar ) )
+                                            ( Path
+                                                { prefix = Just Local
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Unique ( MkUnique 0 )
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source ( Generated desugar ) )
+                                    [ WithProv
+                                        ( Source ( Generated desugar ) )
+                                        ( CaseArm
+                                            { pat = WithProv
+                                                ( Derived desugar
+                                                    ( Source
+                                                        ( Parsed
+                                                            ( Location
+                                                                { file = "test/golden/simple.sonic"
+                                                                , span = Span
+                                                                    { begin = Position
+                                                                        { line = Line 4
+                                                                        , column = Column 1
+                                                                        }
+                                                                    , end = Position
+                                                                        { line = Line 4
+                                                                        , column = Column 6
+                                                                        }
+                                                                    }
+                                                                }
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/simple.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 6
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        ) ( Name "main" )
+                                                    )
+                                                )
+                                            , guard = Nothing
+                                            , body = WithProv
+                                                ( Source ( Generated desugar ) )
+                                                ( Var ()
+                                                    ( WithProv
+                                                        ( Source
+                                                            ( Parsed
+                                                                ( Location
+                                                                    { file = "test/golden/simple.sonic"
+                                                                    , span = Span
+                                                                        { begin = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 1
+                                                                            }
+                                                                        , end = Position
+                                                                            { line = Line 4
+                                                                            , column = Column 6
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Path
+                                                            { prefix = Just Local
+                                                            , inner = SimplePath
+                                                                { parent = Nothing
+                                                                , name = Name "main"
+                                                                }
+                                                            }
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                , WithProv
+                    ( Derived desugar
+                        ( Source
+                            ( Parsed
+                                ( Location
+                                    { file = "test/golden/simple.sonic"
+                                    , span = Span
+                                        { begin = Position
+                                            { line = Line 4
+                                            , column = Column 1
+                                            }
+                                        , end = Position
+                                            { line = Line 5
+                                            , column = Column 1
+                                            }
+                                        }
+                                    }
+                                )
+                            )
+                        )
+                    )
+                    ( Bind
+                        { attrs = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Attrs ( fromList [] ) )
+                        , id = WithProv
+                            ( Source ( Generated desugar ) )
+                            ( Unique ( MkUnique 0 ) )
+                        , type_ = Nothing
+                        , rhs = WithProv
+                            ( Source
+                                ( Parsed
+                                    ( Location
+                                        { file = "test/golden/simple.sonic"
+                                        , span = Span
+                                            { begin = Position
+                                                { line = Line 4
+                                                , column = Column 8
+                                                }
+                                            , end = Position
+                                                { line = Line 5
+                                                , column = Column 1
+                                                }
+                                            }
+                                        }
+                                    )
+                                )
+                            )
+                            ( Apply ()
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/simple.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 4
+                                                        , column = Column 8
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 4
+                                                        , column = Column 14
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( Var ()
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/simple.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 4
+                                                                , column = Column 8
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 4
+                                                                , column = Column 14
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                            ( Path
+                                                { prefix = Nothing
+                                                , inner = SimplePath
+                                                    { parent = Nothing
+                                                    , name = Name "print"
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                )
+                                ( WithProv
+                                    ( Source
+                                        ( Parsed
+                                            ( Location
+                                                { file = "test/golden/simple.sonic"
+                                                , span = Span
+                                                    { begin = Position
+                                                        { line = Line 4
+                                                        , column = Column 14
+                                                        }
+                                                    , end = Position
+                                                        { line = Line 5
+                                                        , column = Column 1
+                                                        }
+                                                    }
+                                                }
+                                            )
+                                        )
+                                    )
+                                    ( Literal ()
+                                        ( WithProv
+                                            ( Source
+                                                ( Parsed
+                                                    ( Location
+                                                        { file = "test/golden/simple.sonic"
+                                                        , span = Span
+                                                            { begin = Position
+                                                                { line = Line 4
+                                                                , column = Column 14
+                                                                }
+                                                            , end = Position
+                                                                { line = Line 5
+                                                                , column = Column 1
+                                                                }
+                                                            }
+                                                        }
+                                                    )
+                                                )
+                                            ) ( Integer 1 )
+                                        )
+                                    )
+                                )
+                            )
+                        }
+                    )
+                ]
+            )
+        ]
+    , dataDecls = []
+    , classDecls = []
+    , instanceDecls = []
+    , extension = ()
+    }
+, []
+)
