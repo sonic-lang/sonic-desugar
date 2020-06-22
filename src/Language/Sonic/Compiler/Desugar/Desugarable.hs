@@ -1,9 +1,11 @@
 {-# LANGUAGE MultiParamTypeClasses  #-}
 {-# LANGUAGE FlexibleInstances      #-}
+{-# LANGUAGE FlexibleContexts       #-}
 {-# LANGUAGE FunctionalDependencies #-}
 
 module Language.Sonic.Compiler.Desugar.Desugarable
   ( Desugarable(..)
+  , Reports
   )
 where
 
@@ -30,36 +32,8 @@ import           Language.Sonic.Compiler.IR.EntityKind
                                                 , Module
                                                 )
 
-import qualified Language.Sonic.Syntax.Name    as Syn
-import qualified Language.Sonic.Syntax.Path    as Syn
-import qualified Language.Sonic.Syntax.Literal as Syn
-import qualified Language.Sonic.Syntax.Pattern as Syn
-import qualified Language.Sonic.Syntax.Kind    as Syn
-import qualified Language.Sonic.Syntax.Type    as Syn
-import qualified Language.Sonic.Syntax.Expression
-                                               as Syn
-import qualified Language.Sonic.Syntax.Attribute
-                                               as Syn
-import qualified Language.Sonic.Syntax.Declaration
-                                               as Syn
-import qualified Language.Sonic.Syntax.Module  as Syn
-
-import qualified Language.Sonic.Compiler.IR.Literal
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Pattern
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Kind
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Type
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Expression
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Attribute
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Declaration
-                                               as IR
-import qualified Language.Sonic.Compiler.IR.Module
-                                               as IR
+import qualified Language.Sonic.Syntax         as Syn
+import qualified Language.Sonic.Compiler.IR    as IR
 
 import qualified Language.Sonic.Compiler.Desugar.IR.Pattern
                                                as IR
@@ -79,11 +53,13 @@ import           Language.Sonic.Compiler.Desugar.Attribute
 import           Language.Sonic.Compiler.Desugar.Declaration
 import           Language.Sonic.Compiler.Desugar.Module
 
+import           Language.Sonic.Compiler.Desugar.Report
+                                                ( Reports )
 import           Language.Sonic.Compiler.Desugar.IR.Pass
                                                 ( Desugar )
 
 class Desugarable syn ir | syn -> ir where
-  desugar :: (FileContext m, MonadUnique m, MonadReport m) => syn Syn.Position -> m ir
+  desugar :: (FileContext m, MonadUnique m, MonadReport Reports m) => syn Syn.Position -> m ir
 
 -- Name
 

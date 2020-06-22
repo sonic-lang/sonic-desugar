@@ -1,6 +1,7 @@
-{-# LANGUAGE PatternSynonyms #-}
-{-# LANGUAGE NamedFieldPuns  #-}
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE PatternSynonyms  #-}
+{-# LANGUAGE NamedFieldPuns   #-}
+{-# LANGUAGE TemplateHaskell  #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 module Language.Sonic.Compiler.Desugar.Module
   ( desugarModule
@@ -27,6 +28,8 @@ import           Language.Sonic.Compiler.Unique ( MonadUnique )
 import           Language.Sonic.Compiler.Report ( MonadReport(..) )
 import           Language.Sonic.Compiler.Provenance
                                                 ( WithProv(..) )
+import           Language.Sonic.Compiler.Desugar.Report
+                                                ( Reports )
 import           Language.Sonic.Compiler.Desugar.Internal
                                                 ( pattern DiscardLoc
                                                 , pattern SpanLoc
@@ -90,7 +93,7 @@ data DesugarModuleState
 $(makeLenses ''DesugarModuleState)
 
 desugarModule
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => Syn.Module Syn.Position
   -> m (IR.Module Desugar)
 desugarModule (Syn.Module (Syn.Sequence items)) = do
@@ -107,7 +110,7 @@ initState :: DesugarModuleState
 initState = DesugarModuleState [] [] [] [] []
 
 desugarModuleItem
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => Syn.ModuleItem Syn.Position
   -> StateT DesugarModuleState m ()
 desugarModuleItem (Syn.TopAttr attrs) = do
@@ -116,7 +119,7 @@ desugarModuleItem (Syn.TopAttr attrs) = do
 desugarModuleItem (Syn.TopDecl (DiscardLoc decl)) = desugarTopDecl decl
 
 desugarTopDecl
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => Syn.WithAttrSet Syn.Decl Syn.Position
   -> StateT DesugarModuleState m ()
 desugarTopDecl (Syn.WithAttrSet attrs (SpanLoc declSpan (Syn.Simple decl))) =

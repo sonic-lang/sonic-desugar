@@ -3,6 +3,7 @@
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE NamedFieldPuns        #-}
 {-# LANGUAGE TypeFamilies          #-}
+{-# LANGUAGE FlexibleContexts      #-}
 
 module Language.Sonic.Compiler.Desugar.Declaration
   ( desugarDataDecl
@@ -67,6 +68,8 @@ import           Language.Sonic.Compiler.Desugar.Internal
                                                 , generated
                                                 , foldMapM
                                                 )
+import           Language.Sonic.Compiler.Desugar.Report
+                                                ( Reports )
 import qualified Language.Sonic.Compiler.Desugar.Report
                                                as Report
 import           Language.Sonic.Compiler.Desugar.IR.Pass
@@ -183,7 +186,7 @@ desugarDataCtorDecl (Syn.WithAttrSet attrs (DiscardLoc Syn.SignatureDecl { Syn.n
                          }
 
 desugarClassDecl
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => WithProv (IR.Attrs Desugar)
   -> Syn.ClassDecl Syn.Position
   -> m (IR.ClassDecl Desugar)
@@ -227,7 +230,7 @@ data DesugaredClassMethodSimpleDecl
   | Bindings [WithProv (IR.Bind Desugar)]
 
 desugarClassMethodSimpleDeclWithLoc
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => WithProv (IR.Attrs Desugar)
   -> Syn.Located Syn.Position Syn.SimpleDecl
   -> m DesugaredClassMethodSimpleDecl
@@ -260,7 +263,7 @@ desugarClassMethodSimpleDeclWithLoc attrs (SpanLoc declSpan (Syn.Signature Syn.S
     pure decl
 
 desugarInstanceDecl
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => WithProv (IR.Attrs Desugar)
   -> Syn.InstanceDecl Syn.Position
   -> m (IR.InstanceDecl Desugar)
@@ -285,7 +288,7 @@ desugarInstanceDecl attrs Syn.InstanceDecl { Syn.context, Syn.className, Syn.typ
       desugarSimpleDecls simpleDecls
 
 desugarValueDecl
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => WithProv (IR.Attrs Desugar)
   -> Syn.ValueDecl Syn.Position
   -> m [IR.Bind Desugar]
@@ -299,7 +302,7 @@ desugarValueDecl attrs Syn.ValueDecl { Syn.pat, Syn.body, Syn.bindings } = do
   pure (bind : makePatBinds attrs pat' rhsTempName)
 
 desugarFunctionDecl
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => WithProv (IR.Attrs Desugar)
   -> Syn.FunctionDecl Syn.Position
   -> m (IR.Bind Desugar)
@@ -331,7 +334,7 @@ desugarFunctionDecl attrs Syn.FunctionDecl { Syn.name, Syn.clauses = SpanLoc cla
   tupleCtorExpr n = IR.Ctor (generated (C.tupleCtor n))
 
 desugarFunctionClause
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => Int
   -> Syn.FunctionClause Syn.Position
   -> m (IR.CaseArm Desugar)
@@ -349,7 +352,7 @@ desugarFunctionClause argCount Syn.FunctionClause { Syn.pats = SpanLoc patsSpan 
     pure $ IR.CaseArm (generated caseArmPat) guard' caseArmBody
 
 desugarWhereBindings
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => Maybe (Syn.Located Syn.Position (Syn.WhereClause Syn.SimpleDecl))
   -> WithProv (IR.Expr Desugar)
   -> m (WithProv (IR.Expr Desugar))
@@ -395,7 +398,7 @@ prepareSimpleDeclSource (Syn.WithAttrSet attrs (SpanLoc declSpan decl)) = do
 
 -- | Desugar a set of 'Syn.SimpleDecl's while merging 'Syn.SignatureDecl' into corresponding value declarations.
 desugarSimpleDecls
-  :: (FileContext m, MonadUnique m, MonadReport m)
+  :: (FileContext m, MonadUnique m, MonadReport Reports m)
   => [SimpleDeclSource]
   -> m [WithProv (IR.Bind Desugar)]
 desugarSimpleDecls decls = do

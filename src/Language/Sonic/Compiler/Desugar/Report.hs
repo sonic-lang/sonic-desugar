@@ -1,6 +1,7 @@
 {-# LANGUAGE DerivingStrategies    #-}
 {-# LANGUAGE DeriveAnyClass        #-}
 {-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE DataKinds             #-}
 
 module Language.Sonic.Compiler.Desugar.Report
   ( EmptyFunctionClauses(..)
@@ -8,6 +9,7 @@ module Language.Sonic.Compiler.Desugar.Report
   , StandaloneTypeSignature(..)
   , DuplicatedTypeSignature(..)
   , DuplicatedBindings(..)
+  , Reports
   )
 where
 
@@ -24,14 +26,14 @@ data EmptyFunctionClauses
   = EmptyFunctionClauses
   { clausesProv :: Prov
   }
-  deriving stock Generic
+  deriving stock (Eq, Show, Generic)
   deriving anyclass Report
 
 data FunctionArgumentLengthMismatch
   = FunctionArgumentLengthMismatch
   { patsProv :: Prov
   }
-  deriving stock Generic
+  deriving stock (Eq, Show, Generic)
   deriving anyclass Report
 
 data StandaloneTypeSignature
@@ -39,7 +41,7 @@ data StandaloneTypeSignature
   { signatureDeclProv :: Prov
   , declaredName :: Name Var
   }
-  deriving stock Generic
+  deriving stock (Eq, Show, Generic)
   deriving anyclass Report
 
 data DuplicatedTypeSignature
@@ -47,7 +49,7 @@ data DuplicatedTypeSignature
   { signatureDeclProvs :: [Prov]
   , declaredName :: Name Var
   }
-  deriving stock Generic
+  deriving stock (Eq, Show, Generic)
   deriving anyclass Report
 
 data DuplicatedBindings
@@ -55,5 +57,8 @@ data DuplicatedBindings
   { bindingDeclProvs :: [Prov]
   , declaredName :: Name Var
   }
-  deriving stock Generic
+  deriving stock (Eq, Show, Generic)
   deriving anyclass Report
+
+type Reports
+  = '[EmptyFunctionClauses, FunctionArgumentLengthMismatch, StandaloneTypeSignature, DuplicatedTypeSignature, DuplicatedBindings]
