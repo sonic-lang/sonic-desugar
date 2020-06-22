@@ -3,6 +3,7 @@
 
 module Language.Sonic.Compiler.Desugar.IR.Expression
   ( ExprInfix(..)
+  , XExprDesugar(..)
   , pattern Var
   , pattern Ctor
   , pattern Literal

@@ -28,6 +28,7 @@ library
   exposed-modules:
     Language.Sonic.Compiler.Desugar
     Language.Sonic.Compiler.Desugar.IR.Expression
+    Language.Sonic.Compiler.Desugar.IR.Instance
     Language.Sonic.Compiler.Desugar.IR.Kind
     Language.Sonic.Compiler.Desugar.IR.Module
     Language.Sonic.Compiler.Desugar.IR.Pass

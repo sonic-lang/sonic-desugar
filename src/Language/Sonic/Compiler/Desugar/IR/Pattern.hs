@@ -3,6 +3,7 @@
 
 module Language.Sonic.Compiler.Desugar.IR.Pattern
   ( PatInfix(..)
+  , XPatDesugar(..)
   , pattern Wildcard
   , pattern Literal
   , pattern Var

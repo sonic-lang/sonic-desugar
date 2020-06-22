@@ -3,6 +3,7 @@
 
 module Language.Sonic.Compiler.Desugar.IR.Type
   ( TypeInfix(..)
+  , XTypeDesugar(..)
   , pattern Var
   , pattern Ctor
   , pattern Apply
